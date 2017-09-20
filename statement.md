@@ -20,7 +20,8 @@ const sum = (...args) => {
   return sum
 }
 
-sum( 1, 2, 3, 4, 5, 6, 8) 
+const uncurriedSum = sum( 1, 2, 3, 4, 5, 6, 8) 
+console.log(uncurriedSum)
 ```
 
 A curried version of the sum function would look like so:
