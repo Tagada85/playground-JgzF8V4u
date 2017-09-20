@@ -2,3 +2,9 @@ title: Simple Node.js Template
 plan:
 - title: Node.js Snippet
   statement: statement.md
+projects:
+  nodejs:
+    root: /functions
+    runner:
+      name: techio/node-npm-runner
+      version: latest
