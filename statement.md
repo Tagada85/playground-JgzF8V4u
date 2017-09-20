@@ -32,23 +32,24 @@ sumCurry(1)(2)(3)(4)(5)(6)(8) //29
 
 How would we implement currying then? Well, let's try something like this:
 
-```javascript
-const curried = 
-  ( func, arity = func.length, nextFunc ) =>
-    (nextFunc = prevArgs => 
-      nextArg => {
-        let args = prevArgs.concat( [nextArg] )
+```javascript runnable
+function curried(func,arity = func.length) {
+  return (function nextCurried(prevArgs){
+    return function curried(nextArg){
+      let args = prevArgs.concat( [nextArg] );
 
-        if( args.length >= arity ){
-          return func( ...args )
-        } 
-        else {
-          return nextFunc( args )
-        }
-      })( [] )
+      if (args.length >= arity) {
+        return func( ...args );
+      }
+      else {
+        return nextCurried( args );
+      }
+    };
+  })( [] )
+}
 
 const sumCurry7 = curried( sum, 7)
-sumCurry7(1)(2)(3)(4)(5)(6)(8) // 29
+console.log( sumCurry7(1)(2)(3)(4)(5)(6)(8) )
 ```
 
 Ok, let's break the *curried* function down a bit.
