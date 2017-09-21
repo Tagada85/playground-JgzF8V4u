@@ -91,7 +91,12 @@ const displayOrder = (...infos) => {
 Nothing fancy here. Let's curry this with the function we created earlier:
 
 ```javascript runnable
-// Curried function here { autofold
+// Curried and displayOrder functions here { autofold
+const displayOrder = (...infos) => {
+  let order = `Customer ${infos[0].toUpperCase()} at table ${infos[1]} wants ${infos[2]} ${infos[3] ? `and ${infos[3]} for dessert.` : '.'}`
+  return order
+}
+
 function curried(func,arity = func.length) {
   return (function nextCurried(prevArgs){
     return function curried(nextArg){
