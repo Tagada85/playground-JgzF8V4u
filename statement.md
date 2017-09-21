@@ -90,7 +90,7 @@ const displayOrder = (...infos) => {
 
 Nothing fancy here. Let's curry this with the function we created earlier:
 
-```javascript
+```javascript runnable
 // Curried function here { autofold
 function curried(func,arity = func.length) {
   return (function nextCurried(prevArgs){
