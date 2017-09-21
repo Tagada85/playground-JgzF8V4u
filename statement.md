@@ -22,8 +22,6 @@ const sum = (...args) => {
 
 const uncurriedSum = sum( 1, 2, 3, 4, 5, 6, 8) 
 console.log(uncurriedSum)
-
-exports.sum = sum
 ```
 
 A curried version of the sum function would look like so:
@@ -35,7 +33,17 @@ sumCurry(1)(2)(3)(4)(5)(6)(8) //29
 How would we implement currying then? Well, let's try something like this:
 
 ```javascript runnable
-const curried = function curried(func,arity = func.length) {
+//{ autofold
+const sum = (...args) => {
+  let sum = 0
+  for( let i = 0; i < args.length; i++ ) {
+    sum += args[i]
+  } 
+  return sum
+}
+}//
+
+function curried(func,arity = func.length) {
   return (function nextCurried(prevArgs){
     return function curried(nextArg){
       let args = prevArgs.concat( [nextArg] );
@@ -53,7 +61,6 @@ const curried = function curried(func,arity = func.length) {
 const sumCurry7 = curried( sum, 7)
 console.log( sumCurry7(1)(2)(3)(4)(5)(6)(8) )
 
-exports.curried = curried
 ```
 
 Ok, let's break the *curried* function down a bit.
