@@ -11,8 +11,10 @@ We reduce the **arity** of each function to one ( arity is the arguments length 
 
 Let's start with a non-curried example. We want to calculate the sum of the arguments given to a function:
 
-```javascript runnable
 @[A sum function]({ "stubs": ["function.js"], "command": "node function.js" })
+
+```javascript runnable
+
 
 const uncurriedSum = sum( 1, 2, 3, 4, 5, 6, 8) 
 console.log(uncurriedSum)
