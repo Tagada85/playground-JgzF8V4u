@@ -119,7 +119,8 @@ const orderOne = mealOneDish('Joe')(3)('cheeseburger')
 
 const orderTwo = mealWithDessert('Sarah')(6)('fries')('waffles')
 
-console.log(orderOne, orderTwo)
+console.log(orderOne)
+console.log(orderTwo)
 ```
 
 ## Why use currying?
