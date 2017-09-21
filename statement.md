@@ -33,15 +33,15 @@ sumCurry(1)(2)(3)(4)(5)(6)(8) //29
 How would we implement currying then? Well, let's try something like this:
 
 ```javascript runnable
-//{ autofold
+// autofold
 const sum = (...args) => {
   let sum = 0
   for( let i = 0; i < args.length; i++ ) {
     sum += args[i]
   } 
   return sum
-  };
-}//
+  }
+//
 
 function curried(func,arity = func.length) {
   return (function nextCurried(prevArgs){
