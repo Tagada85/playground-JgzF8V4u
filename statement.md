@@ -11,10 +11,14 @@ We reduce the **arity** of each function to one ( arity is the arguments length 
 
 Let's start with a non-curried example. We want to calculate the sum of the arguments given to a function:
 
-@[A sum function]({ "stubs": ["function.js"], "command": "node function.js" })
-
 ```javascript runnable
-
+exports.sum = (...args) => {
+  let sum = 0
+  for( let i = 0; i < args.length; i++ ) {
+    sum += args[i]
+  } 
+  return sum
+}
 
 const uncurriedSum = sum( 1, 2, 3, 4, 5, 6, 8) 
 console.log(uncurriedSum)
@@ -29,7 +33,7 @@ sumCurry(1)(2)(3)(4)(5)(6)(8) //29
 How would we implement currying then? Well, let's try something like this:
 
 ```javascript runnable
-function curried(func,arity = func.length) {
+exports.curried = function curried(func,arity = func.length) {
   return (function nextCurried(prevArgs){
     return function curried(nextArg){
       let args = prevArgs.concat( [nextArg] );
