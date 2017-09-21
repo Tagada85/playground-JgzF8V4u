@@ -33,7 +33,7 @@ sumCurry(1)(2)(3)(4)(5)(6)(8) //29
 How would we implement currying then? Well, let's try something like this:
 
 ```javascript runnable
-//{ autofold
+// Our sum function here{ autofold
 const sum = (...args) => {
   let sum = 0
   for( let i = 0; i < args.length; i++ ) {
@@ -91,14 +91,30 @@ const displayOrder = (...infos) => {
 Nothing fancy here. Let's curry this with the function we created earlier:
 
 ```javascript
+// Curried function here { autofold
+function curried(func,arity = func.length) {
+  return (function nextCurried(prevArgs){
+    return function curried(nextArg){
+      let args = prevArgs.concat( [nextArg] );
+
+      if (args.length >= arity) {
+        return func( ...args );
+      }
+      else {
+        return nextCurried( args );
+      }
+    };
+  })( [] )
+}
+//}
 const mealOneDish = curried( displayOrder, 3 )
 const mealWithDessert = curried( displayOrder, 4)
 
 const orderOne = mealOneDish('Joe')(3)('cheeseburger')
-// Customer JOE at table 3 wants cheeseburger .
 
 const orderTwo = mealWithDessert('Sarah')(6)('fries')('waffles')
-// Customer SARAH at table 6 wants fries and waffles for dessert.
+
+console.log(orderOne, orderTwo)
 ```
 
 ## Why use currying?
