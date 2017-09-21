@@ -40,7 +40,7 @@ const sum = (...args) => {
     sum += args[i]
   } 
   return sum
-}
+  };
 }//
 
 function curried(func,arity = func.length) {
